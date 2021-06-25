@@ -1,11 +1,11 @@
-import Calificacion from "../models/calificacion.js";
+const Calificacion = require ("../models/calificacion.js");
 
-export const agregarCalificacion = async(req, res, next) => {
+const agregarCalificacion = async(req, res, next) => {
     
     const {id_empleado, id_usuario, puntuacion, comentario} = (req.body);
 
     try {
-        const calificacion = await Calificacion.create({id_empleado, id_usuario, puntuacion, comentario})
+        await Calificacion.create({id_empleado, id_usuario, puntuacion, comentario})
         res.json({mensaje: 'Gracias por su Calificación'})
     } catch (error) {
         res.json({mensaje: 'Hubo un error, intente de nuevo'})
@@ -14,7 +14,7 @@ export const agregarCalificacion = async(req, res, next) => {
     }
 }
 
-export const mostrarCalificaciones = async(req, res, next) => {
+const mostrarCalificaciones = async(req, res, next) => {
 
     const id_empleado = req.params.idEmpleado
 
@@ -22,10 +22,18 @@ export const mostrarCalificaciones = async(req, res, next) => {
         
         const calificaciones = await Calificacion.findAll({where: {id_empleado}})
 
-        if(inspeccion.length === 0){
+        if(calificaciones.length === 0){
             res.json({mensaje: 'No hay calificaciones para este empleado'});
             return;
         }
         res.json(calificaciones);
     } catch (error) {
-        console.log(error)
+        console.log(error)
+        next();
+    }
+}
+
+module.exports = {
+    agregarCalificacion,
+    mostrarCalificaciones,
+}

@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "nodemon src"
   },
-  "type": "module",
   "author": "Manuel Lamon",
   "license": "ISC",
   "dependencies": {

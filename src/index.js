@@ -1,7 +1,7 @@
-import  express  from "express";
-import  router from "./routes/router.js"
-import db from "./config/db.js"
-import cors from "cors"
+const express = require("express");
+const router = require("./routes/router.js");
+const db = require("./config/db.js");
+const cors = require("cors");
 //Crea servidor
 const app = express();
 //Habilitando Cors

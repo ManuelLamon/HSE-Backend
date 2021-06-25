@@ -1,6 +1,6 @@
-import Inspecciones from "../models/inspecciones.js";
+const Inspecciones = require ("../models/inspecciones.js");
 
-export const agregarInspeccion = async(req, res, next) => {
+ const agregarInspeccion = async(req, res, next) => {
     
     const {id_empleado, id_usuario, problema, ubicacion, contacto, estado} = (req.body);
 
@@ -13,7 +13,7 @@ export const agregarInspeccion = async(req, res, next) => {
     }
 }
 
-export const mostrarInspecciones = async(req, res, next) => {
+ const mostrarInspecciones = async(req, res, next) => {
     try {
         const inspecciones = await Inspecciones.findAll({})
         res.json(inspecciones);
@@ -23,7 +23,7 @@ export const mostrarInspecciones = async(req, res, next) => {
     }
 }
 
-export const mostrarInspeccion = async(req, res, next) => {
+ const mostrarInspeccion = async(req, res, next) => {
     const id = req.params.idInspeccion
     try {
         
@@ -38,4 +38,11 @@ export const mostrarInspeccion = async(req, res, next) => {
         console.log(error)
         next();
     }
+}
+
+module.exports = {
+    agregarInspeccion,
+    mostrarInspecciones,
+    mostrarInspeccion,
+
 }

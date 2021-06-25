@@ -1,5 +1,6 @@
-import Sequelize from 'sequelize';
-import db from '../config/db.js'
+const {Sequelize} = require ('sequelize');
+
+const db = require ('../config/db.js');
 
 const Categoria = db.define('categorias',{
     nombre: {
@@ -8,6 +9,6 @@ const Categoria = db.define('categorias',{
     imagen: {
         type: Sequelize.STRING
     },
-})
+});
 
-export default Categoria
+module.exports = Categoria

@@ -1,6 +1,6 @@
-import Subcategoria from '../models/subcategorias.js'
+const Subcategoria = require ('../models/subcategorias.js')
 
-export const mostrarSubcategorias = async(req, res, next) => {
+const mostrarSubcategorias = async(req, res, next) => {
     try {
         const subcategoria = await Subcategoria.findAll({})
         res.json(subcategoria);
@@ -10,7 +10,7 @@ export const mostrarSubcategorias = async(req, res, next) => {
     }
 }
 
-export const mostrarSubcategoria = async(req, res, next) => {
+const mostrarSubcategoria = async(req, res, next) => {
     const id = req.params.idSubcategoria
     try {
         const subcategoria = await Subcategoria.findAll({where: {id}})
@@ -21,7 +21,7 @@ export const mostrarSubcategoria = async(req, res, next) => {
     }
 }
 
-export const mostrarSubcategoriaDCat = async(req, res, next) => {
+const mostrarSubcategoriaDCat = async(req, res, next) => {
     const id_categoria = req.params.idCategoria
     try {
         const subcategoria = await Subcategoria.findAll({where: {id_categoria}})
@@ -32,7 +32,7 @@ export const mostrarSubcategoriaDCat = async(req, res, next) => {
     }
 }
 
-export const agregarSubcategoria = async(req, res, next) => {
+const agregarSubcategoria = async(req, res, next) => {
     
     const {nombre, id_categoria} = (req.body);
 
@@ -45,7 +45,7 @@ export const agregarSubcategoria = async(req, res, next) => {
     }
 }
 
-export const actualizarSubcategoria = async(req, res, next) => {
+const actualizarSubcategoria = async(req, res, next) => {
     
     const {nombre, id_categoria} = (req.body);
     const id = req.params.idSubcategoria
@@ -59,7 +59,7 @@ export const actualizarSubcategoria = async(req, res, next) => {
     }
 }
 
-export const eliminarSubcategoria = async(req, res, next) => {
+const eliminarSubcategoria = async(req, res, next) => {
     
     const id = req.params.idSubcategoria
 
@@ -70,4 +70,13 @@ export const eliminarSubcategoria = async(req, res, next) => {
         console.log(error)
         next();
     }
+}
+
+module.exports = {
+    mostrarSubcategorias,
+    mostrarSubcategoria,
+    mostrarSubcategoriaDCat,
+    agregarSubcategoria,
+    actualizarSubcategoria,
+    eliminarSubcategoria,
 }

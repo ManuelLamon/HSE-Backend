@@ -1,6 +1,6 @@
-import Categoria from "../models/categorias.js";
-import multer from 'multer';
-import shortid from 'shortid'
+const Categoria = require ("../models/categorias.js");
+const multer = require ('multer');
+const shortid = require ('shortid')
 
 let fileStorage;
 
@@ -27,7 +27,7 @@ const confinguracionMulter = {
   const upload = multer(confinguracionMulter).single('imagen');
 
 //Sube un archivo
-export const subirArchivo = (req, res, next) => {
+const subirArchivo = (req, res, next) => {
     upload(req, res, function(error) {
         if(error) {
             res.json({mensaje: error})
@@ -36,7 +36,9 @@ export const subirArchivo = (req, res, next) => {
     })
 }
 
-export const agregarCategoria = async (req, res, next) =>{
+
+
+const agregarCategoria = async (req, res, next) =>{
     
     const {nombre} = (req.body);
     let imagen = '';
@@ -56,7 +58,7 @@ export const agregarCategoria = async (req, res, next) =>{
     }
 }
 
-export const mostrarCategorias = async (req, res, next) => {
+const mostrarCategorias = async (req, res, next) => {
     try {
         //obtener todos los productos
         const categorias = await Categoria.findAll({});
@@ -67,7 +69,7 @@ export const mostrarCategorias = async (req, res, next) => {
         next();
     }
 }
-export const mostrarCategoria = async (req, res, next) => {
+const mostrarCategoria = async (req, res, next) => {
 
     const id = req.params.idCategoria
     
@@ -88,7 +90,7 @@ export const mostrarCategoria = async (req, res, next) => {
    
 }
 
-export const actualizarCategoria = async (req, res, next) =>{
+const actualizarCategoria = async (req, res, next) =>{
 
     const id = req.params.idCategoria
     const {nombre} = (req.body);
@@ -118,4 +120,12 @@ export const actualizarCategoria = async (req, res, next) =>{
         console.log(error)
         next();
     }
+}
+
+module.exports = {
+    subirArchivo,
+    agregarCategoria,
+    mostrarCategorias,
+    mostrarCategoria,
+    actualizarCategoria,
 }

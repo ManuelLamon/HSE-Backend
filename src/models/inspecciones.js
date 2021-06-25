@@ -1,5 +1,5 @@
-import Sequelize from 'sequelize';
-import db from '../config/db.js'
+const {Sequelize} = require ('sequelize');
+const db = require ('../config/db.js')
 
 const Inspecciones = db.define('inspecciones',{
     id_empleado: {
@@ -22,4 +22,4 @@ const Inspecciones = db.define('inspecciones',{
     },
 })
 
-export default Inspecciones
+module.exports = Inspecciones

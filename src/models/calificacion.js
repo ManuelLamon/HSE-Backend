@@ -1,7 +1,7 @@
-import Sequelize from 'sequelize';
-import db from '../config/db.js'
+const {Sequelize} = require ('sequelize');
+const db = require ('../config/db.js')
 
-const Calificacion = db.define('calificacion',{
+const Calificacion = db.define('calificacione',{
     id_usuario: {
         type: Sequelize.INTEGER
     },
@@ -16,4 +16,4 @@ const Calificacion = db.define('calificacion',{
     },
 })
 
-export default Calificacion
+module.exports = Calificacion

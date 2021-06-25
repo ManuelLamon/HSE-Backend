@@ -1,5 +1,5 @@
-import Sequelize from 'sequelize';
-import db from '../config/db.js'
+const {Sequelize} = require ('sequelize');
+const db = require ('../config/db.js')
 
 const Usuario = db.define('usuarios',{
     nombre: {
@@ -26,4 +26,4 @@ const Usuario = db.define('usuarios',{
     }  
 })
 
-export default Usuario
+module.exports = Usuario;

@@ -1,18 +1,16 @@
-import express from 'express';
-import auth from '../middleware/auth.js'
+const express = require ('express');
+const auth = require( '../middleware/auth.js');
 
-import { agregarCategoria, actualizarCategoria, subirArchivo, mostrarCategorias, mostrarCategoria } from '../controllers/categoriasController.js';
-import {mostrarSubcategorias, eliminarSubcategoria,actualizarSubcategoria,agregarSubcategoria,mostrarSubcategoria, mostrarSubcategoriaDCat} from '../controllers/subcategoriasController.js'
-import {agregarInspeccion, mostrarInspecciones, mostrarInspeccion} from '../controllers/inspeccionesController.js'
-import {mostrarCalificaciones, agregarCalificacion} from '../controllers/calificacionesController.js'
-import { autenticarUsuario, registrarUsuario } from '../controllers/usuarioController.js';
+const { agregarCategoria, actualizarCategoria, subirArchivo, mostrarCategorias, mostrarCategoria } = require ('../controllers/categoriasController.js');
+const {mostrarSubcategorias, eliminarSubcategoria,actualizarSubcategoria,agregarSubcategoria,mostrarSubcategoria, mostrarSubcategoriaDCat} = require ('../controllers/subcategoriasController.js');
+const {agregarInspeccion, mostrarInspecciones, mostrarInspeccion} = require ('../controllers/inspeccionesController.js');
+const {mostrarCalificaciones, agregarCalificacion} = require ('../controllers/calificacionesController.js');
+const {autenticarUsuario, registrarUsuario } = require ('../controllers/usuarioController.js');
+
 //middle para proteger las rutas
 auth
-const router = express.Router();
 
-router.get('/inicio', auth , (req,res) =>{
-    res.send('inicio');
-});
+const router = express.Router();
 
 //Sesión
 router.post('/crear-cuenta', registrarUsuario);
@@ -44,6 +42,4 @@ router.get('/inspecciones/:idInspeccion', mostrarInspeccion);
  router.get('/calificacion/:idEmpleado', mostrarCalificaciones);
 
 
-
-
-export default router;
+module.exports = router;
