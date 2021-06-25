@@ -4,6 +4,7 @@ import auth from '../middleware/auth.js'
 import { agregarCategoria, actualizarCategoria, subirArchivo, mostrarCategorias, mostrarCategoria } from '../controllers/categoriasController.js';
 import {mostrarSubcategorias, eliminarSubcategoria,actualizarSubcategoria,agregarSubcategoria,mostrarSubcategoria, mostrarSubcategoriaDCat} from '../controllers/subcategoriasController.js'
 import {agregarInspeccion, mostrarInspecciones, mostrarInspeccion} from '../controllers/inspeccionesController.js'
+import {mostrarCalificaciones, agregarCalificacion} from '../controllers/calificacionesController.js'
 import { autenticarUsuario, registrarUsuario } from '../controllers/usuarioController.js';
 //middle para proteger las rutas
 auth
@@ -39,6 +40,8 @@ router.post('/inspecciones', agregarInspeccion);
 router.get('/inspecciones/:idInspeccion', mostrarInspeccion);
 
 //Calificacion
+ router.post('/calificacion', agregarCalificacion);
+ router.get('/calificacion/:idEmpleado', mostrarCalificaciones);
 
 
 
