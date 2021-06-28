@@ -20,6 +20,9 @@ const port = process.env.PORT||4000;
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
+//Carpeta publica
+app.use(express.static('uploads'))
+
 //agregar router
 app.use('/', router)
 

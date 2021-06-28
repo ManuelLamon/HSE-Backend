@@ -9,6 +9,9 @@ const Categoria = db.define('categorias',{
     imagen: {
         type: Sequelize.STRING
     },
+    color: {
+        type: Sequelize.STRING
+    },
 });
 
 module.exports = Categoria

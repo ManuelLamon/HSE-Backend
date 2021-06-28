@@ -6,6 +6,7 @@ const {mostrarSubcategorias, eliminarSubcategoria,actualizarSubcategoria,agregar
 const {agregarInspeccion, mostrarInspecciones, mostrarInspeccion} = require ('../controllers/inspeccionesController.js');
 const {mostrarCalificaciones, agregarCalificacion} = require ('../controllers/calificacionesController.js');
 const {autenticarUsuario, registrarUsuario } = require ('../controllers/usuarioController.js');
+const {mostrarEmpleadosPCategoria, mostrarEmpleadosPSubcategoria, mostrarEmpleado}  = require('../controllers/empleadosControlles.js')
 
 //middle para proteger las rutas
 auth
@@ -17,6 +18,11 @@ router.post('/crear-cuenta', registrarUsuario);
 router.post('/iniciar-sesion', autenticarUsuario);
 
 //Sesión Empleados
+
+//Mostrar Empleados
+router.get('/empleados/:idCategoria',mostrarEmpleadosPCategoria)
+router.get('/empleados/:idCategoria/:idSubcategoria',mostrarEmpleadosPSubcategoria)
+router.get('/empleado/:id',mostrarEmpleado)
 
 //Categorias
 router.get('/categorias', mostrarCategorias);
