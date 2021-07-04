@@ -1,4 +1,5 @@
 const Usuario  = require ("../models/usuarios.js");
+const UsuarioShow  = require ("../models/usuarioShow.js");
 const jwt = require ("jsonwebtoken");
 const bcrypt = require ("bcrypt");
 
@@ -34,7 +35,7 @@ const registrarUsuario = async (req ,res) => {
 const autenticarUsuario = async (req ,res, next) => {
     //Buscar el usuario
     const {email, password} = req.body;
-    console.log(req.body)
+
     const usuario = await Usuario.findOne({ where:{email}})
 
     if(!usuario){
@@ -68,7 +69,37 @@ const autenticarUsuario = async (req ,res, next) => {
     
 }
 
+const mostrarUsuario = async (req, res, next) => {
+
+    const email = req.params.email
+    try {
+    const usuario = await UsuarioShow.findOne({ where:{email}})
+    res.json(usuario)
+    } catch (error) {
+        console.log(error)
+        next();
+    }
+    
+
+}
+const mostrarUsuarioId = async (req, res, next) => {
+
+    const id = req.params.id
+
+    try {
+    const usuario = await UsuarioShow.findOne({ where:{id}})
+    res.json(usuario)
+    } catch (error) {
+        console.log(error)
+        next();
+    }
+    
+
+}
+
 module.exports = {
     registrarUsuario,
-    autenticarUsuario
+    autenticarUsuario,
+    mostrarUsuario,
+    mostrarUsuarioId
 }

@@ -9,6 +9,7 @@ const Inspecciones = require ("../models/inspecciones.js");
         res.json({mensaje: 'Solicitud creada correctamente'})
     } catch (error) {
         console.log(error)
+        res.json({mensaje: 'Algo Salio mal, vuelve a  intentar'})
         next();
     }
 }

@@ -1,21 +1,25 @@
 const express = require ('express');
-const auth = require( '../middleware/auth.js');
+
 
 const { agregarCategoria, actualizarCategoria, subirArchivo, mostrarCategorias, mostrarCategoria } = require ('../controllers/categoriasController.js');
 const {mostrarSubcategorias, eliminarSubcategoria,actualizarSubcategoria,agregarSubcategoria,mostrarSubcategoria, mostrarSubcategoriaDCat} = require ('../controllers/subcategoriasController.js');
 const {agregarInspeccion, mostrarInspecciones, mostrarInspeccion} = require ('../controllers/inspeccionesController.js');
 const {mostrarCalificaciones, agregarCalificacion} = require ('../controllers/calificacionesController.js');
-const {autenticarUsuario, registrarUsuario } = require ('../controllers/usuarioController.js');
+const {autenticarUsuario, registrarUsuario, mostrarUsuario, mostrarUsuarioId} = require ('../controllers/usuarioController.js');
 const {mostrarEmpleadosPCategoria, mostrarEmpleadosPSubcategoria, mostrarEmpleado}  = require('../controllers/empleadosControlles.js')
 
 //middle para proteger las rutas
-auth
+const auth = require( '../middleware/auth.js');
 
 const router = express.Router();
 
 //Sesión
 router.post('/crear-cuenta', registrarUsuario);
 router.post('/iniciar-sesion', autenticarUsuario);
+
+//Mostrar usuario
+router.get('/usuario/:email',mostrarUsuario)
+router.get('/usuario/user/:id',mostrarUsuarioId)
 
 //Sesión Empleados
 
