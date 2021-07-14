@@ -20,6 +20,9 @@ const EmpleadosShow = db.define('empleados',{
     descripcion: {
         type: Sequelize.STRING
     },
+    average: {
+        type: Sequelize.INTEGER
+    },
     id_categoria: {
         type: Sequelize.INTEGER
     },

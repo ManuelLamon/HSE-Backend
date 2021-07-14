@@ -41,8 +41,25 @@ const mostrarEmpleado = async (req, res) =>{
 
 }
 
+const actualizarCEmpleado = async (req, res) =>{
+
+    const {average} = (req.body)
+
+    const id = req.params.id
+
+    try {
+        const empleado = await EmpleadosShow.update({average},{where: {id} })
+        res.json(empleado);
+    } catch (error) {
+        console.log(error)
+        next();
+    }
+
+}
+
 module.exports = {
     mostrarEmpleadosPCategoria,
     mostrarEmpleadosPSubcategoria,
-    mostrarEmpleado
+    mostrarEmpleado,
+    actualizarCEmpleado
 }

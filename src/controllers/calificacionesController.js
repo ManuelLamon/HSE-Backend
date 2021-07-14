@@ -21,11 +21,7 @@ const mostrarCalificaciones = async(req, res, next) => {
     try {
         
         const calificaciones = await Calificacion.findAll({where: {id_empleado}})
-
-        if(calificaciones.length === 0){
-            res.json({mensaje: 'No hay calificaciones para este empleado'});
-            return;
-        }
+        
         res.json(calificaciones);
     } catch (error) {
         console.log(error)
@@ -33,7 +29,23 @@ const mostrarCalificaciones = async(req, res, next) => {
     }
 }
 
+const eliminarCalificacion = async(req, res, next) => {
+
+    const id = req.params.id
+
+    try {
+        
+        const calificaciones = await Calificacion.destroy({where: {id}})
+        res.json({mensaje: 'Calificación eliminada'});
+    } catch (error) {
+        console.log(error)
+        res.json({mensaje: 'Hubo un error, intente de nuevo'})
+        next();
+    }
+}
+
 module.exports = {
     agregarCalificacion,
     mostrarCalificaciones,
+    eliminarCalificacion
 }

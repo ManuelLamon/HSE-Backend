@@ -41,9 +41,36 @@ const Inspecciones = require ("../models/inspecciones.js");
     }
 }
 
+ const EliminarInspeccion = async(req, res, next) => {
+    const id = req.params.idInspeccion
+    try {
+        
+        const inspeccion = await Inspecciones.destroy({where: {id}})
+        res.json({mensaje: 'Inspeccion Cancelada'});
+    } catch (error) {
+        console.log(error)
+        next();
+    }
+}
+
+const mostrarInspeccionesUser = async(req, res, next) => {
+    const id_usuario = req.params.idUser
+    try {
+        
+        const inspeccion = await Inspecciones.findAll({where: {id_usuario}})
+
+        res.json(inspeccion);
+    } catch (error) {
+        console.log(error)
+        next();
+    }
+}
+
 module.exports = {
     agregarInspeccion,
     mostrarInspecciones,
     mostrarInspeccion,
+    mostrarInspeccionesUser,
+    EliminarInspeccion
 
 }

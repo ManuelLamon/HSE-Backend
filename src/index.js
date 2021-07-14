@@ -14,7 +14,7 @@ db.authenticate()
     .catch(error => console.log(error))
     
 //Definiendo puerto
-const port = process.env.PORT||4000;
+const port = process.env.PORT||5000;
 
 //Habilitando el body parser
 app.use(express.urlencoded({extended: true}));
