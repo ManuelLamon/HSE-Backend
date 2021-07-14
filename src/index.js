@@ -28,6 +28,6 @@ app.use('/', router)
 
 
 //puerto
-app.listen(port,()=>{
+app.listen(port,'0.0.0.0',()=>{
     console.log(`El puerto esta funcionando en el puerto ${port}`)
 });
