@@ -22,7 +22,8 @@ router.get('/usuario/:email',auth,mostrarUsuario)
 router.get('/usuario/user/:id',auth,mostrarUsuarioId)
 
 //Sesión Empleados
-
+//Por hacer: Registrar empleado
+//Iniciar sesion de empleado
 //Mostrar Empleados
 router.get('/empleados/:idCategoria',auth,mostrarEmpleadosPCategoria)
 router.get('/empleados/:idCategoria/:idSubcategoria',auth,mostrarEmpleadosPSubcategoria)
