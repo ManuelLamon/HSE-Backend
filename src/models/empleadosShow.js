@@ -17,10 +17,19 @@ const EmpleadosShow = db.define('empleados',{
     estado:{
         type: Sequelize.INTEGER
     },
+    telefono:{
+        type: Sequelize.STRING
+    },
+    email:{
+        type: Sequelize.STRING
+    },
     descripcion: {
         type: Sequelize.STRING
     },
     average: {
+        type: Sequelize.INTEGER
+    },
+    N_cedula: {
         type: Sequelize.INTEGER
     },
     id_categoria: {

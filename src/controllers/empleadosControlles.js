@@ -41,6 +41,18 @@ const mostrarEmpleado = async (req, res) =>{
 
 }
 
+const mostrarEmpleados = async (req, res) =>{
+
+    try {
+        const empleado = await EmpleadosShow.findAll({})
+        res.json(empleado);
+    } catch (error) {
+        console.log(error)
+        next();
+    }
+
+}
+
 const actualizarCEmpleado = async (req, res) =>{
 
     const {average} = (req.body)
@@ -61,5 +73,6 @@ module.exports = {
     mostrarEmpleadosPCategoria,
     mostrarEmpleadosPSubcategoria,
     mostrarEmpleado,
-    actualizarCEmpleado
+    actualizarCEmpleado,
+    mostrarEmpleados
 }

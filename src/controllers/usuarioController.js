@@ -97,9 +97,23 @@ const mostrarUsuarioId = async (req, res, next) => {
 
 }
 
+const mostrarUsuarios = async (req, res, next) => {
+
+    try {
+    const usuario = await UsuarioShow.findAll({})
+    res.json(usuario)
+    } catch (error) {
+        console.log(error)
+        next();
+    }
+    
+
+}
+
 module.exports = {
     registrarUsuario,
     autenticarUsuario,
     mostrarUsuario,
-    mostrarUsuarioId
+    mostrarUsuarioId,
+    mostrarUsuarios
 }
