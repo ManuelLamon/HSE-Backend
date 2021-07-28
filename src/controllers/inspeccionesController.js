@@ -2,10 +2,10 @@ const Inspecciones = require ("../models/inspecciones.js");
 
  const agregarInspeccion = async(req, res, next) => {
     
-    const {id_empleado, id_usuario, problema, ubicacion, contacto, estado} = (req.body);
+    const {id_empleado, id_usuario,id_categoria, problema, ubicacion, contacto, estado} = (req.body);
 
     try {
-        const inspeccion = await Inspecciones.create({id_empleado, id_usuario, problema, ubicacion, contacto, estado})
+        const inspeccion = await Inspecciones.create({id_empleado, id_usuario, id_categoria, problema, ubicacion, contacto, estado})
         res.json({mensaje: 'Solicitud creada correctamente'})
     } catch (error) {
         console.log(error)
