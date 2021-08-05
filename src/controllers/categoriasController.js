@@ -1,6 +1,6 @@
 const Categoria = require ("../models/categorias.js");
 const multer = require ('multer');
-const shortid = require ('shortid')
+const shortid = require ('shortid');
 
 let fileStorage;
 
@@ -40,7 +40,7 @@ const subirArchivo = (req, res, next) => {
 
 const agregarCategoria = async (req, res, next) =>{
     
-    const {nombre} = (req.body);
+    const {nombre,color} = (req.body);
     let imagen = '';
     try {
         if(req.file.filename){
@@ -48,6 +48,7 @@ const agregarCategoria = async (req, res, next) =>{
         }
         await Categoria.create({
             nombre,
+            color,
             imagen
         });
 
@@ -93,7 +94,7 @@ const mostrarCategoria = async (req, res, next) => {
 const actualizarCategoria = async (req, res, next) =>{
 
     const id = req.params.idCategoria
-    const {nombre} = (req.body);
+    const {nombre,color} = (req.body);
     let imagen = '';
 
     try {
@@ -109,7 +110,7 @@ const actualizarCategoria = async (req, res, next) =>{
         }
 
          //actualizar categoria
-         let categoria = await Categoria.update({nombre, imagen},{where : {id}});
+         let categoria = await Categoria.update({nombre, imagen, color},{where : {id}});
          if(categoria == 1){
             res.json({mensaje: 'Se ha actualizado con Éxito'})
          }else{
