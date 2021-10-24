@@ -1,7 +1,7 @@
 const {Sequelize} = require ('sequelize');
 const db = require ('../config/db.js')
 
-const EmpleadosShow = db.define('empleados',{
+const Empleados = db.define('empleados',{
     nombre: {
         type: Sequelize.STRING
     },
@@ -15,7 +15,7 @@ const EmpleadosShow = db.define('empleados',{
         type: Sequelize.STRING
     },
     estado:{
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
     },
     telefono:{
         type: Sequelize.STRING
@@ -29,7 +29,7 @@ const EmpleadosShow = db.define('empleados',{
     average: {
         type: Sequelize.INTEGER
     },
-    N_cedula: {
+    n_cedula: {
         type: Sequelize.INTEGER
     },
     id_categoria: {
@@ -38,9 +38,15 @@ const EmpleadosShow = db.define('empleados',{
     id_subcategoria: {
         type: Sequelize.INTEGER
     },
+    usuario: {
+        type: Sequelize.STRING
+    },
     rol: {
         type: Sequelize.STRING
     },
+    password: {
+        type: Sequelize.STRING
+    }
 })
 
-module.exports = EmpleadosShow;
+module.exports = Empleados;

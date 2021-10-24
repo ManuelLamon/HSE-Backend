@@ -30,7 +30,7 @@ const confinguracionMulter = {
 const subirArchivo = (req, res, next) => {
     upload(req, res, function(error) {
         if(error) {
-            res.json({mensaje: error})
+            res.status(404).json({mensaje: error})
         }
         return next();
     })
@@ -52,8 +52,9 @@ const agregarCategoria = async (req, res, next) =>{
             imagen
         });
 
-        res.json({mensaje: 'Categoria creada correctamente'})
+        res.status(200).json({mensaje: 'Categoria creada correctamente'})
     } catch (error) {
+        res.status(404).json({mensaje: 'Hubo un error, intente de nuevo'})
         console.log(error);
         next();
     }
@@ -63,9 +64,10 @@ const mostrarCategorias = async (req, res, next) => {
     try {
         //obtener todos los productos
         const categorias = await Categoria.findAll({});
-        res.json(categorias)
+        res.status(200).json(categorias)
         
     } catch (error) {
+        res.status(404).json({mensaje: 'Hubo un error, intente de nuevo'})
         console.log(error);
         next();
     }
@@ -75,14 +77,15 @@ const mostrarCategoria = async (req, res, next) => {
     const id = req.params.idCategoria
     
     if(!id){
-        res.json({mensaje : 'Ese Producto no existe'})
+        res.status(404).json({mensaje : 'Ese Producto no existe'})
     }else{
         try {
             //obtener todos los categoria
             const categoria = await Categoria.findOne({where : {id}});
-            res.json(categoria)
+            res.status(200).json(categoria)
             
         } catch (error) {
+            res.status(404).json({mensaje: 'Hubo un error, intente de nuevo'})
             console.log(error);
             next();
         }
@@ -112,9 +115,9 @@ const actualizarCategoria = async (req, res, next) =>{
          //actualizar categoria
          let categoria = await Categoria.update({nombre, imagen, color},{where : {id}});
          if(categoria == 1){
-            res.json({mensaje: 'Se ha actualizado con Éxito'})
+            res.status(200).json({mensaje: 'Se ha actualizado con Éxito'})
          }else{
-            res.json({mensaje: 'Hubo un error'})
+            res.status(404).json({mensaje: 'Hubo un error'})
          }
         
     } catch (error) {

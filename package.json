@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src", 
-    "start": "npm install && node ./src"
+    "start": "node ./src"
   },
   "author": "Manuel Lamon",
   "license": "ISC",

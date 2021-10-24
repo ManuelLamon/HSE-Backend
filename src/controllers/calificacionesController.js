@@ -6,9 +6,9 @@ const agregarCalificacion = async(req, res, next) => {
 
     try {
         await Calificacion.create({id_empleado, id_usuario, puntuacion, comentario})
-        res.json({mensaje: 'Gracias por su Calificación'})
+        res.status(200).json({mensaje: 'Gracias por su Calificación'})
     } catch (error) {
-        res.json({mensaje: 'Hubo un error, intente de nuevo'})
+        res.status(404).json({mensaje: 'Hubo un error, intente de nuevo'})
         console.log(error)
         next();
     }
@@ -22,9 +22,10 @@ const mostrarCalificaciones = async(req, res, next) => {
         
         const calificaciones = await Calificacion.findAll({where: {id_empleado}})
         
-        res.json(calificaciones);
+        res.status(200).json(calificaciones);
     } catch (error) {
         console.log(error)
+        res.status(404).json({mensaje: 'Hubo un error, intente de nuevo'})
         next();
     }
 }

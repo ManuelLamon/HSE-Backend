@@ -23,9 +23,9 @@ const registrarUsuario = async (req ,res) => {
         const {parent: {errno}} = error
         console.log(errno)
         if(errno === 1062){
-            res.json({mensaje: `El Email ${email} ya existe, por favor use otro.`})
+            res.status(200).json({mensaje: `El Email ${email} ya existe, por favor use otro.`})
         }else{
-            res.json({mensaje: 'Hubo un error'})
+            res.status(404).json({mensaje: 'Hubo un error'})
         }
         
     }
@@ -62,7 +62,7 @@ const autenticarUsuario = async (req ,res, next) => {
             });
 
             //retornar el token
-            res.json({token})
+            res.status(200).json({token})
         }
 
     }
@@ -74,7 +74,7 @@ const mostrarUsuario = async (req, res, next) => {
     const email = req.params.email
     try {
     const usuario = await UsuarioShow.findOne({ where:{email}})
-    res.json(usuario)
+    res.status(200).json(usuario)
     } catch (error) {
         console.log(error)
         next();
@@ -88,7 +88,7 @@ const mostrarUsuarioId = async (req, res, next) => {
 
     try {
     const usuario = await UsuarioShow.findOne({ where:{id}})
-    res.json(usuario)
+    res.status(200).json(usuario)
     } catch (error) {
         console.log(error)
         next();
@@ -101,7 +101,7 @@ const mostrarUsuarios = async (req, res, next) => {
 
     try {
     const usuario = await UsuarioShow.findAll({})
-    res.json(usuario)
+    res.status(200).json(usuario)
     } catch (error) {
         console.log(error)
         next();

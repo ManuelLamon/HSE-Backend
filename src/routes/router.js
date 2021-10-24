@@ -6,7 +6,7 @@ const {mostrarSubcategorias, eliminarSubcategoria,actualizarSubcategoria,agregar
 const {agregarInspeccion, mostrarInspecciones, mostrarInspeccion, mostrarInspeccionesUser, EliminarInspeccion} = require ('../controllers/inspeccionesController.js');
 const {mostrarCalificaciones, agregarCalificacion,eliminarCalificacion} = require ('../controllers/calificacionesController.js');
 const {autenticarUsuario, registrarUsuario, mostrarUsuario, mostrarUsuarioId, mostrarUsuarios} = require ('../controllers/usuarioController.js');
-const {mostrarEmpleadosPCategoria, mostrarEmpleadosPSubcategoria, mostrarEmpleado, actualizarCEmpleado, mostrarEmpleados}  = require('../controllers/empleadosControlles.js')
+const {mostrarEmpleadosPCategoria, mostrarEmpleadosPSubcategoria, mostrarEmpleado, actualizarCEmpleado, mostrarEmpleados, actualizarEstEmpleado,registrarEmpleados,autenticarEmpleados,mostrarEmpleadosEmail}  = require('../controllers/empleadosControlles.js')
 
 //middle para proteger las rutas
 const auth = require( '../middleware/auth.js');
@@ -20,10 +20,11 @@ router.post('/iniciar-sesion', autenticarUsuario);
 //Mostrar usuario
 router.get('/usuarios',mostrarUsuarios)
 router.get('/usuario/:email',auth,mostrarUsuario)
-router.get('/usuario/user/:id',auth,mostrarUsuarioId)
 
 //Sesión Empleados
 //Por hacer: Registrar empleado
+router.post('/crear-cuenta/empleados', registrarEmpleados);
+router.post('/iniciar-sesion/empleados', autenticarEmpleados);
 //Iniciar sesion de empleado
 
 //Mostrar Empleados
@@ -31,7 +32,9 @@ router.get('/empleados',mostrarEmpleados)
 router.get('/empleados/:idCategoria',auth,mostrarEmpleadosPCategoria)
 router.get('/empleados/:idCategoria/:idSubcategoria',auth,mostrarEmpleadosPSubcategoria)
 router.get('/empleado/:id',auth,mostrarEmpleado)
-router.put('/empleado/puntuacion/:id',auth,actualizarCEmpleado)
+router.get('/empleadoEmail/:email',auth,mostrarEmpleadosEmail)
+router.put('/empleado/puntuacion/:id',actualizarCEmpleado)
+router.put('/empleado/estado/:id',actualizarEstEmpleado)
 
 //Categorias
 router.get('/categorias', mostrarCategorias);

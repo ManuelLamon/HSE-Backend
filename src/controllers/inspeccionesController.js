@@ -6,7 +6,7 @@ const Inspecciones = require ("../models/inspecciones.js");
 
     try {
         const inspeccion = await Inspecciones.create({id_empleado, id_usuario, id_categoria, problema, ubicacion, contacto, estado})
-        res.json({mensaje: 'Solicitud creada correctamente'})
+        res.status(200).json({mensaje: 'Solicitud creada correctamente'})
     } catch (error) {
         console.log(error)
         res.json({mensaje: 'Algo Salio mal, vuelve a  intentar'})
@@ -17,7 +17,7 @@ const Inspecciones = require ("../models/inspecciones.js");
  const mostrarInspecciones = async(req, res, next) => {
     try {
         const inspecciones = await Inspecciones.findAll({})
-        res.json(inspecciones);
+        res.status(200).json(inspecciones);
     } catch (error) {
         console.log(error)
         next();
@@ -31,7 +31,7 @@ const Inspecciones = require ("../models/inspecciones.js");
         const inspeccion = await Inspecciones.findAll({where: {id}})
 
         if(inspeccion.length === 0){
-            res.json({mensaje: 'Esa Solicitud no existe'});
+            res.status(200).json({mensaje: 'Esa Solicitud no existe'});
             return;
         }
         res.json(inspeccion);
@@ -46,7 +46,7 @@ const Inspecciones = require ("../models/inspecciones.js");
     try {
         
         const inspeccion = await Inspecciones.destroy({where: {id}})
-        res.json({mensaje: 'Inspeccion Cancelada'});
+        res.status(200).json({mensaje: 'Inspeccion Cancelada'});
     } catch (error) {
         console.log(error)
         next();
@@ -59,7 +59,7 @@ const mostrarInspeccionesUser = async(req, res, next) => {
         
         const inspeccion = await Inspecciones.findAll({where: {id_usuario}})
 
-        res.json(inspeccion);
+        res.status(200).json(inspeccion);
     } catch (error) {
         console.log(error)
         next();
