@@ -59,8 +59,12 @@ const mostrarInspeccionesUser = async(req, res, next) => {
     try {
         
         const inspeccion = await Inspecciones.findAll({where: {id_usuario}})
-
-        res.status(200).json(inspeccion);
+        
+      if(inspeccion.length === 0){
+            return res.status(404).json({mensaje: 'No tienes solicitudes'});
+        }else{
+            return res.status(200).json(inspeccion);
+        }
     } catch (error) {
         console.log(error)
         next();
