@@ -32,7 +32,7 @@ const Inspecciones = require ("../models/inspecciones.js");
 
         if(inspeccion.length === 0){
             
-            return res.status(200).json({mensaje: 'Esa Solicitud no existe'});
+            return res.status(404).json({mensaje: 'Esa Solicitud no existe'});
         }else{
             return res.status(200).json(inspeccion);
         }
