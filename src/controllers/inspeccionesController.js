@@ -34,7 +34,7 @@ const Inspecciones = require ("../models/inspecciones.js");
             res.status(200).json({mensaje: 'Esa Solicitud no existe'});
             return;
         }
-        res.json(inspeccion);
+        res.status(200).json(inspeccion);
     } catch (error) {
         console.log(error)
         next();
