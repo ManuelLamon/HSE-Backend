@@ -20,6 +20,7 @@ router.post('/iniciar-sesion', autenticarUsuario);
 //Mostrar usuario
 router.get('/usuarios',mostrarUsuarios)
 router.get('/usuario/:email',auth,mostrarUsuario)
+router.get('/usuario/user/:id',auth,mostrarUsuarioId)
 
 //Sesión Empleados
 //Por hacer: Registrar empleado
