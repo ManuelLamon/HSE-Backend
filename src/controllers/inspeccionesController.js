@@ -31,10 +31,11 @@ const Inspecciones = require ("../models/inspecciones.js");
         const inspeccion = await Inspecciones.findAll({where: {id}})
 
         if(inspeccion.length === 0){
-            res.status(200).json({mensaje: 'Esa Solicitud no existe'});
-            return;
+            
+            return res.status(200).json({mensaje: 'Esa Solicitud no existe'});
+        }else{
+            return res.status(200).json(inspeccion);
         }
-        res.status(200).json(inspeccion);
     } catch (error) {
         console.log(error)
         next();
