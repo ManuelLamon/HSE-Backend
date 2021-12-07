@@ -2,6 +2,9 @@ const {Sequelize} = require ('sequelize');
 const db = require ('../config/db.js')
 
 const Inspecciones = db.define('inspecciones',{
+    id_inspeccion: {
+        type: Sequelize.STRING
+    },
     id_empleado: {
         type: Sequelize.INTEGER
     },
@@ -21,7 +24,22 @@ const Inspecciones = db.define('inspecciones',{
         type: Sequelize.STRING
     },
     estado: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
+    },
+    estatus: {
+        type: Sequelize.STRING
+    },
+    fecha: {
+        type: Sequelize.STRING
+    },
+    hora: {
+        type: Sequelize.STRING
+    },
+    fecha_fin: {
+        type: Sequelize.STRING
+    },
+    hora_fin: {
+        type: Sequelize.STRING
     },
 })
 

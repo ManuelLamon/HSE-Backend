@@ -3,10 +3,11 @@ const express = require ('express');
 
 const { agregarCategoria, actualizarCategoria, subirArchivo, mostrarCategorias, mostrarCategoria } = require ('../controllers/categoriasController.js');
 const {mostrarSubcategorias, eliminarSubcategoria,actualizarSubcategoria,agregarSubcategoria,mostrarSubcategoria, mostrarSubcategoriaDCat} = require ('../controllers/subcategoriasController.js');
-const {agregarInspeccion, mostrarInspecciones, mostrarInspeccion, mostrarInspeccionesUser, EliminarInspeccion} = require ('../controllers/inspeccionesController.js');
+const inspeccionesController = require ('../controllers/inspeccionesController.js');
 const {mostrarCalificaciones, agregarCalificacion,eliminarCalificacion} = require ('../controllers/calificacionesController.js');
 const {autenticarUsuario, registrarUsuario, mostrarUsuario, mostrarUsuarioId, mostrarUsuarios} = require ('../controllers/usuarioController.js');
-const {mostrarEmpleadosPCategoria, mostrarEmpleadosPSubcategoria, mostrarEmpleado, actualizarCEmpleado, mostrarEmpleados, actualizarEstEmpleado,registrarEmpleados,autenticarEmpleados,mostrarEmpleadosEmail}  = require('../controllers/empleadosControlles.js')
+const  empleadosController  = require('../controllers/empleadosController.js')
+const Bancos = require("../controllers/bancosController.js")
 
 //middle para proteger las rutas
 const auth = require( '../middleware/auth.js');
@@ -24,18 +25,19 @@ router.get('/usuario/user/:id',auth,mostrarUsuarioId)
 
 //Sesión Empleados
 //Por hacer: Registrar empleado
-router.post('/crear-cuenta/empleados', registrarEmpleados);
-router.post('/iniciar-sesion/empleados', autenticarEmpleados);
+router.post('/crear-cuenta/empleados', empleadosController.registrarEmpleados);
+router.post('/iniciar-sesion/empleados', empleadosController.autenticarEmpleados);
 //Iniciar sesion de empleado
 
 //Mostrar Empleados
-router.get('/empleados',mostrarEmpleados)
-router.get('/empleados/:idCategoria',auth,mostrarEmpleadosPCategoria)
-router.get('/empleados/:idCategoria/:idSubcategoria',auth,mostrarEmpleadosPSubcategoria)
-router.get('/empleado/:id',auth,mostrarEmpleado)
-router.get('/empleadoEmail/:email',auth,mostrarEmpleadosEmail)
-router.put('/empleado/puntuacion/:id',actualizarCEmpleado)
-router.put('/empleado/estado/:id',actualizarEstEmpleado)
+router.get('/empleados',empleadosController.mostrarEmpleados)
+router.get('/empleados/:idCategoria',auth,empleadosController.mostrarEmpleadosPCategoria)
+router.get('/empleados/:idCategoria/:idSubcategoria',auth,empleadosController.mostrarEmpleadosPSubcategoria)
+
+router.get('/empleado/:id',empleadosController.mostrarEmpleado)
+router.get('/empleadoEmail/:email',auth,empleadosController.mostrarEmpleadosEmail)
+router.put('/empleado/puntuacion/:id',empleadosController.actualizarCEmpleado)
+router.put('/empleado/estado/:id',empleadosController.actualizarEstEmpleado)
 
 //Categorias
 router.get('/categorias', mostrarCategorias);
@@ -52,17 +54,22 @@ router.put('/subcategorias/:idSubcategoria', auth,actualizarSubcategoria);
 router.delete('/subcategorias/:idSubcategoria',auth, eliminarSubcategoria);
 
 //Inspecciones
-router.get('/inspecciones', mostrarInspecciones);
-router.post('/inspecciones',auth, agregarInspeccion);
-router.get('/inspecciones/:idInspeccion', mostrarInspeccion);
-router.delete('/inspecciones/:idInspeccion',auth, EliminarInspeccion);
-router.get('/inspecciones/user/:idUser',auth, mostrarInspeccionesUser);
+router.get('/inspecciones', inspeccionesController.mostrarInspecciones);
+router.post('/inspecciones',auth, inspeccionesController.agregarInspeccion);
+router.get('/inspecciones/:idInspeccion', inspeccionesController.mostrarInspeccion);
+router.delete('/inspecciones/:idInspeccion',auth, inspeccionesController.EliminarInspeccion);
+router.get('/inspecciones/user/:idUser',auth, inspeccionesController.mostrarInspeccionesUser);
+router.get('/inspecciones/empleado/:idEmpleado', inspeccionesController.mostrarInspeccionesEmpleado);
+router.put('/inspecciones/actualizarInspeccion', inspeccionesController.actualizarInspeccion);
 
 
 //Calificacion
  router.post('/calificacion',auth, agregarCalificacion);
  router.get('/calificacion/:idEmpleado',auth, mostrarCalificaciones);
  router.delete('/calificacion/:id',auth, eliminarCalificacion);
+
+ //Bancos
+ router.get('/bancos/:idEmpleado', Bancos.mostrarBancoPorEmpleado);
 
 
 module.exports = router;

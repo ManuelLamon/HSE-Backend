@@ -58,7 +58,7 @@ const autenticarUsuario = async (req ,res, next) => {
             }, 
             '*%HSE_07%*',
             {
-                expiresIn : '1h'
+                expiresIn : '24h'
             });
 
             //retornar el token

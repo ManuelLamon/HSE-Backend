@@ -14,7 +14,7 @@ const EmpleadosShow = db.define('empleados',{
     etiqueta: {
         type: Sequelize.STRING
     },
-    estado:{
+    estatus:{
         type: Sequelize.INTEGER
     },
     telefono:{
