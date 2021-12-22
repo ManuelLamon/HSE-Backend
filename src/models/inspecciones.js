@@ -12,6 +12,9 @@ const Inspecciones = db.define('inspecciones',{
         type: Sequelize.INTEGER
     },
     id_categoria: {
+        type: Sequelize.STRING
+    },
+    id_subcategoria: {
         type: Sequelize.INTEGER
     },
     problema: {

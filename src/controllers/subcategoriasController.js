@@ -12,13 +12,21 @@ const mostrarSubcategorias = async(req, res, next) => {
 
 const mostrarSubcategoria = async(req, res, next) => {
     const id = req.params.idSubcategoria
-    try {
-        const subcategoria = await Subcategoria.findAll({where: {id}})
-        res.status(200).json(subcategoria);
-    } catch (error) {
-        console.log(error)
-        next();
+    if(id == ''){
+
+        return res.status(200).json({msj:'no existe'});
+    }else{
+
+        try {
+            const subcategoria = await Subcategoria.findAll({where: {id}})
+            res.status(200).json(subcategoria);
+        } catch (error) {
+            console.log(error)
+            next();
+        }
+
     }
+   
 }
 
 const mostrarSubcategoriaDCat = async(req, res, next) => {

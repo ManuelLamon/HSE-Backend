@@ -47,7 +47,7 @@ router.post('/categorias', subirArchivo ,agregarCategoria);
 
 //Subcategoria
 router.get('/subcategorias', mostrarSubcategorias);
-router.get('/subcategorias/:idSubcategoria', auth,mostrarSubcategoria);
+router.get('/subcategorias/:idSubcategoria',mostrarSubcategoria);
 router.get('/subcategorias/categoria/:idCategoria', auth,mostrarSubcategoriaDCat);
 router.post('/subcategorias', auth,agregarSubcategoria);
 router.put('/subcategorias/:idSubcategoria', auth,actualizarSubcategoria);

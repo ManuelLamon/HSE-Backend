@@ -7,7 +7,7 @@ const inspeccionesController = {
 
     agregarInspeccion: async(req, res, next) => {
     
-        const {id_empleado, id_usuario,id_categoria, problema, ubicacion, contacto, estado} = (req.body);
+        const {id_empleado,id_subcategoria, id_usuario,id_categoria, problema, ubicacion, contacto, estado} = (req.body);
         const id_inspeccion = shortid.generate().replace(/[&\/\\#,+()$~%.'":*?<>{}_-]/g, '').toUpperCase()
         const fechaHoy = moment().format('DD/MM/YYYY')
         const horaHoy = moment().format('hh:mm:ss a')
@@ -19,6 +19,7 @@ const inspeccionesController = {
                                        id_inspeccion, 
                                        id_usuario, 
                                        id_categoria,
+                                       id_subcategoria, 
                                        problema,
                                        ubicacion,
                                        contacto,
