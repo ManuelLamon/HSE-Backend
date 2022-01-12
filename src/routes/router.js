@@ -21,7 +21,7 @@ router.post('/iniciar-sesion', autenticarUsuario);
 //Mostrar usuario
 router.get('/usuarios',mostrarUsuarios)
 router.get('/usuario/:email',auth,mostrarUsuario)
-router.get('/usuario/user/:id',auth,mostrarUsuarioId)
+router.get('/usuario/user/:id',mostrarUsuarioId)
 
 //Sesión Empleados
 //Por hacer: Registrar empleado
@@ -31,8 +31,8 @@ router.post('/iniciar-sesion/empleados', empleadosController.autenticarEmpleados
 
 //Mostrar Empleados
 router.get('/empleados',empleadosController.mostrarEmpleados)
-router.get('/empleados/:idCategoria',auth,empleadosController.mostrarEmpleadosPCategoria)
-router.get('/empleados/:idCategoria/:idSubcategoria',auth,empleadosController.mostrarEmpleadosPSubcategoria)
+router.get('/empleados/:idCategoria',empleadosController.mostrarEmpleadosPCategoria)
+router.get('/empleados/:idCategoria/:idSubcategoria',empleadosController.mostrarEmpleadosPSubcategoria)
 
 router.get('/empleado/:id',empleadosController.mostrarEmpleado)
 router.get('/empleadoEmail/:email',auth,empleadosController.mostrarEmpleadosEmail)
@@ -41,7 +41,7 @@ router.put('/empleado/estado/:id',empleadosController.actualizarEstEmpleado)
 
 //Categorias
 router.get('/categorias', mostrarCategorias);
-router.get('/categorias/:idCategoria', auth,mostrarCategoria);
+router.get('/categorias/:idCategoria', mostrarCategoria);
 router.put('/categorias/:idCategoria',subirArchivo ,actualizarCategoria);
 router.post('/categorias', subirArchivo ,agregarCategoria);
 
@@ -61,6 +61,7 @@ router.delete('/inspecciones/:idInspeccion',auth, inspeccionesController.Elimina
 router.get('/inspecciones/user/:idUser',auth, inspeccionesController.mostrarInspeccionesUser);
 router.get('/inspecciones/empleado/:idEmpleado', inspeccionesController.mostrarInspeccionesEmpleado);
 router.put('/inspecciones/actualizarInspeccion', inspeccionesController.actualizarInspeccion);
+router.put('/inspecciones/aggEmpleadoConsulta', inspeccionesController.aggEmpleadoConsulta);
 
 
 //Calificacion

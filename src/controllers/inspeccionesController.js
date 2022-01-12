@@ -56,7 +56,7 @@ const inspeccionesController = {
     
             if(inspeccion.length === 0){
                 
-                return res.status(404).json({mensaje: 'Esa Solicitud no existe'});
+                return res.status(200).json({mensaje: 'Esa Solicitud no existe'});
             }else{
                 return res.status(200).json(inspeccion);
             }
@@ -152,6 +152,27 @@ const inspeccionesController = {
         }
 
 
+
+    },
+
+    aggEmpleadoConsulta: async (req, res, next) => {
+
+        const {id_inspeccion,empleado} = req.body
+
+        console.log(empleado)
+
+        try {
+
+            await Inspecciones.update({id_empleado: empleado.id,estado: 'EP'},{where : {id_inspeccion}})
+
+            res.status(200).json({mensaje: 'Actualizado correctamente'})
+            
+        } catch (error) {
+
+            console.log(error)
+            next();
+            
+        }
 
     }
 

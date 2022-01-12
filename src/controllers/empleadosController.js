@@ -103,6 +103,42 @@ const empleadosController = {
         }
     },
 
+    autenticarEmpleadosSupervisores: async (req ,res, next) => {
+        //Buscar el usuario
+        const {email, password} = req.body;
+    
+        const user = await Empleados.findOne({ where:{email}})
+    
+        if(!user){
+            //El usuario no existe
+            res.status(401).json({mensaje: 'Ese usuario no existe'})
+            
+        }else{
+            //El usuario existe, verificar si el password es correcto o incorrecto
+            if(!bcrypt.compareSync(password, user.password)){
+                //Si el password es incorrecto
+                 res.status(401).json({mensaje: 'Contraseña incorrecta'})
+               
+            }else{
+                //Password correcto, se crea un token
+                const token = jwt.sign({
+                    email: user.email,
+                    nombre: user.nombre,
+                    rol: user.rol,
+                    id: user.id,
+                }, 
+                '*%HSE_07%*',
+                {
+                    expiresIn : '24h'
+                });
+    
+                //retornar el token
+                res.status(200).json({token})
+            }
+    
+        }
+    },
+
     mostrarEmpleadosPCategoria: async (req, res) =>{
 
         const id_categoria = req.params.idCategoria
