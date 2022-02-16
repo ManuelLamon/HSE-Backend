@@ -114,27 +114,37 @@ const empleadosController = {
             res.status(401).json({mensaje: 'Ese usuario no existe'})
             
         }else{
-            //El usuario existe, verificar si el password es correcto o incorrecto
-            if(!bcrypt.compareSync(password, user.password)){
-                //Si el password es incorrecto
-                 res.status(401).json({mensaje: 'Contraseña incorrecta'})
-               
+            //verificacion del rol de usuario
+            if(user.rol != 'E'){
+
+                 //El usuario existe, verificar si el password es correcto o incorrecto
+                if(!bcrypt.compareSync(password, user.password)){
+                    //Si el password es incorrecto
+                    res.status(401).json({mensaje: 'Contraseña incorrecta'})
+                
+                }else{
+                    //Password correcto, se crea un token
+                    const token = jwt.sign({
+                        email: user.email,
+                        nombre: user.nombre,
+                        rol: user.rol,
+                        id: user.id,
+                    }, 
+                    '*%HSE_07%*',
+                    {
+                        expiresIn : '24h'
+                    });
+        
+                    //retornar el token
+                    res.status(200).json({token})
+                }
+
             }else{
-                //Password correcto, se crea un token
-                const token = jwt.sign({
-                    email: user.email,
-                    nombre: user.nombre,
-                    rol: user.rol,
-                    id: user.id,
-                }, 
-                '*%HSE_07%*',
-                {
-                    expiresIn : '24h'
-                });
-    
-                //retornar el token
-                res.status(200).json({token})
+
+                res.status(401).json({mensaje: 'Este usuario no esta autorizado'})
+                
             }
+           
     
         }
     },

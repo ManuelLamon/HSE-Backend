@@ -26,8 +26,10 @@ router.get('/usuario/user/:id',mostrarUsuarioId)
 //Sesión Empleados
 //Por hacer: Registrar empleado
 router.post('/crear-cuenta/empleados', empleadosController.registrarEmpleados);
-router.post('/iniciar-sesion/empleados', empleadosController.autenticarEmpleados);
 //Iniciar sesion de empleado
+router.post('/iniciar-sesion/empleados', empleadosController.autenticarEmpleados);
+//Iniciar sesion Admin APP
+router.post('/iniciar-sesion/adminApp', empleadosController.autenticarEmpleadosSupervisores);
 
 //Mostrar Empleados
 router.get('/empleados',empleadosController.mostrarEmpleados)
