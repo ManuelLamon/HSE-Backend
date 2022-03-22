@@ -3,7 +3,12 @@ const CONTANTES = {
     //EMPLEADOS
     empleado : 'E',
     supervisor: 'S',
-    Admin:'AD'
+    Admin:'AD',
+    //BANCOS
+    pendiente: 'P',
+    completo: 'C',
+    retiro:'RETIRO',
+    cargo:'CARGO',
     
 
 }

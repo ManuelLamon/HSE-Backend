@@ -73,6 +73,10 @@ router.put('/inspecciones/aggEmpleadoConsulta', inspeccionesController.aggEmplea
 
  //Bancos
  router.get('/bancos/:idEmpleado', Bancos.mostrarBancoPorEmpleado);
+ router.get('/bancos/solicitud/mostrarSolicitudes', Bancos.mostrarSolicitudes);
+ router.post('/bancos/solicitud/mostrarSolicitudesPorEmpleados', Bancos.mostrarSolicitudesPorEmpleados);
+ router.post('/bancos/solicitud/InsertarSolicitudDePago', Bancos.InsertarSolicitudDePago);
+ router.post('/bancos/solicitud/pagarAEmpleados', Bancos.pagarAEmpleados);
 
 
 module.exports = router;
